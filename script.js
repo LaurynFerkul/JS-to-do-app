@@ -52,7 +52,7 @@ formElement.addEventListener('submit', function (e) {
 })
 
 
-// clicking on a task allows you to toggle between checked/unchecked (AKA done vs not done)
+
 
 //NOTE: this will not work because you can only add event listeners to elements which exist in the DOM at the time of the code execution 
 // const listElements = document.querySelector('li');
@@ -64,6 +64,27 @@ formElement.addEventListener('submit', function (e) {
 // in order to attach a click event listener to the li's which do not exist on the page yet, we can use:
 //EVENT PROPAGATION to DELEGATE the click event to the ul
 
+const ul = document.querySelector('ul');
+
+
+ul.addEventListener('click', function(e){
+    // the this keyword represents the object which owns the code which is currently running
+    // so this wil give us back the ul consistently which is not what we want
+    // console.log(this);
+
+    console.log(e);
+
+    // as long as we've clicked on the icon, then 
+    // toggle between checked/unchecked (AKA done vs not done)
+    if (e.target.localName === 'i'){
+        console.log(`checkbox was clicked`)
+
+        // toggle between checked/unchecked (AKA done vs not done) on the target element"
+        e.target.classList.toggle('fa-square-check');
+        e.target.classList.toggle('fa-square');
+    }
+});
+
 // BONUS LEVEL:
 // add a "Reset" button which clears all of the TO DOs
 // add an "Edit task" button
@@ -71,11 +92,3 @@ formElement.addEventListener('submit', function (e) {
 // add a congratulations alert when all of the existing TO DOs are checked off 
 // add a "Take a break" message if 5 or more tasks are completed
 
-// clicking on a task allows you to toggle between check/unchecked (AKA done vs not done)
-
-// BONUS LEVEL:
-// add a "RESET" button which clears all of the TO DOs
-// add a "Edit task" button 
-// add a "remove task" button to each task 
-// add a congratulations alert when all of the existing TO DOs are checked off 
-// add a "Take a break" message if 5 or more tasks are completed
